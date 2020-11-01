@@ -3,12 +3,11 @@ require 'pry'
 def stock_picker(stock_list)
   # gets every pair of stocks in the order of the original array
   # this way we can simulate each potential buy-sell choice... kinda cool
+  # all you have to pick is the best combination
   best_profit = 0
   best_pair =[]
   days = []
 
-  
-  
   stock_list.combination(2) do |combo|
     buy = combo[0]
     sell = combo[1]
@@ -20,10 +19,11 @@ def stock_picker(stock_list)
   best_pair.each {|stock| days.push(stock_list.index(stock))}
   print "stocks: #{best_pair}\nOn days: #{days}\n"
   puts "For profit: #{best_profit}"
+  return days
 
 end
 
-stock_picker([27,7,15,2,11,7,6,1,10])
+days = stock_picker([27,7,15,2,11,7,6,1,10])
 
 # alt: looping through the list twice (outer + inner loop), permutations,
   # copying the list and going for the min and, using a substring, the max.
